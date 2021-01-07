@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Lost in a Dreamscape</title>
+    <title>Lost in a dreamscape</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
-    <meta itemprop="name" content="Lost in a Dreamscape">
-    <meta itemprop="description" content="Lost in a Dreamscape">
+    <meta itemprop="name" content="final">
+    <meta itemprop="description" content="Lost in a dreamscape">
     <meta itemprop="image" content="screenshot.png">
-    <meta name="description" content="Lost in a Dreamscape" />
+    <meta name="description" content="Lost in a dreamscape" />
 
     <style>
         body {
@@ -16,10 +17,13 @@
             color: #fff;
             font-family: Helvetica, Arial, sans-serif;
         }
+
         canvas {
             display: block;
             position: absolute;
+            outline:0;
         }
+
         footer {
             position: absolute;
             bottom: 0;
@@ -31,15 +35,19 @@
             font-size: 18px;
             color: #24baa7;
         }
-        footer a, footer a:hover, footer a:active {
+
+        footer a,
+        footer a:hover,
+        footer a:active {
             color: #24baa7;
         }
     </style>
 
 </head>
-<body>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<body>
+ 
+ <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4C7DXKWJEZ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -48,42 +56,37 @@
 
   gtag('config', 'G-4C7DXKWJEZ');
 </script>
-	
-    <canvas id="glcanvas" width="100vw" height="100vh"></canvas>
+
+
+
+    <canvas id="glcanvas" width="100vw" height="100vh" tabindex="1"></canvas>
+ 
+
     <libs/>
     <script type="text/javascript" src="js/patch.js" async></script>
     <corelibs/>
 
     <script>
-        /**
-         * Called when there was a cables error.
-         * @param {string} errId - ID of the error, e.g. 'NO_WEBGL' or 'NO_WEBAUDIO'
-         *                         when the browser does not support the used APIs
-         * @param {string} errMsg - The error message
-         */
-        function showError(errId, errMsg) {
-            alert('An error occured: ' + errId + ', ' + errMsg);
+
+        function patchInitialized(patch) {
+            // You can now access the patch object (patch), register variable watchers and so on
         }
 
-        function patchInitialized() {
-            // You can now access the patch object (CABLES.patch), register variable watchers and so on
-        }
-
-        function patchFinishedLoading() {
+        function patchFinishedLoading(patch) {
             // The patch is ready now, all assets have been loaded
         }
 
-        document.addEventListener('CABLES.jsLoaded', function(event) {
+        document.addEventListener('CABLES.jsLoaded', function (event) {
             CABLES.patch = new CABLES.Patch({
                 patch: CABLES.exportedPatch,
                 prefixAssetPath: '',
                 glCanvasId: 'glcanvas',
                 glCanvasResizeToWindow: true,
-                onError: showError,
                 onPatchLoaded: patchInitialized,
                 onFinishedLoading: patchFinishedLoading,
             });
         });
     </script>
 </body>
+
 </html>
